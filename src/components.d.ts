@@ -12,6 +12,9 @@ import '@stencil/core';
 
 export namespace Components {
 
+  interface CapPesel {}
+  interface CapPeselAttributes extends StencilHTMLAttributes {}
+
   interface UcSpinner {}
   interface UcSpinnerAttributes extends StencilHTMLAttributes {}
 
@@ -30,17 +33,25 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'CapPesel': Components.CapPesel;
     'UcSpinner': Components.UcSpinner;
     'UcStockFinder': Components.UcStockFinder;
     'UcStockPrice': Components.UcStockPrice;
   }
 
   interface StencilIntrinsicElements {
+    'cap-pesel': Components.CapPeselAttributes;
     'uc-spinner': Components.UcSpinnerAttributes;
     'uc-stock-finder': Components.UcStockFinderAttributes;
     'uc-stock-price': Components.UcStockPriceAttributes;
   }
 
+
+  interface HTMLCapPeselElement extends Components.CapPesel, HTMLStencilElement {}
+  var HTMLCapPeselElement: {
+    prototype: HTMLCapPeselElement;
+    new (): HTMLCapPeselElement;
+  };
 
   interface HTMLUcSpinnerElement extends Components.UcSpinner, HTMLStencilElement {}
   var HTMLUcSpinnerElement: {
@@ -61,12 +72,14 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'cap-pesel': HTMLCapPeselElement
     'uc-spinner': HTMLUcSpinnerElement
     'uc-stock-finder': HTMLUcStockFinderElement
     'uc-stock-price': HTMLUcStockPriceElement
   }
 
   interface ElementTagNameMap {
+    'cap-pesel': HTMLCapPeselElement;
     'uc-spinner': HTMLUcSpinnerElement;
     'uc-stock-finder': HTMLUcStockFinderElement;
     'uc-stock-price': HTMLUcStockPriceElement;
