@@ -1,40 +1,43 @@
-import { Component, Element, Listen } from '@stencil/core';
+import { Component, Listen, State, Prop } from "@stencil/core";
+import { ValidationHelper } from "./ValidationHelper";
 
 @Component({
-  tag: 'cap-pesel',
-  styleUrl: './cap-pesel.css',
+  tag: "cap-pesel",
+  styleUrl: "./cap-pesel.css",
   shadow: true
 })
 export class CapPesel {
-  @Element()
-  el: HTMLElement;
-
   peselInput: HTMLInputElement;
 
-  @Listen('keyup')
+  @State()
+  isValid: boolean = true;
+
+  @Prop()
+  label: string;
+
+  @Listen("keyup")
   handleKeyDown() {
-
-      console.log(this.peselInput.value);
-
-  }
-
-
-  validatePesel(event: Event) {
-    event.preventDefault();
-    console.log("test");
+    if (this.peselInput.value.length === 11) {
+      console.log("osiągnąłem 11 znaków");
+      this.isValid = ValidationHelper.validatePesel(this.peselInput.value);
+    } else if (this.peselInput.value.length >= 11) {
+      this.isValid = false;
+    } else {
+      this.isValid = true;
+    }
   }
 
   render() {
-    return (
-      <form onSubmit={this.validatePesel.bind(this)}>
-        <input
-          type="text"
-          ref={el => (this.peselInput = el)}
-          id="pesel"
-        />
-        <button type="submit">Wyślij</button>
-      </form>
-    )
+    let validationInfo;
 
+    if (!this.isValid) {
+      validationInfo = <p>Pesel może być nieprawidłowy</p>;
+    }
+
+    return [
+      <div>{this.label || "Wprowadź dane:"}</div>,
+      <input type="text" id="pesel" ref={el => (this.peselInput = el)} />,
+      <div id="error-message">{validationInfo}</div>
+    ];
   }
 }

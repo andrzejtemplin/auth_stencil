@@ -12,8 +12,24 @@ import '@stencil/core';
 
 export namespace Components {
 
-  interface CapPesel {}
-  interface CapPeselAttributes extends StencilHTMLAttributes {}
+  interface CapAuth {}
+  interface CapAuthAttributes extends StencilHTMLAttributes {}
+
+  interface CapPassword {
+    'label': string;
+    'showPassword': boolean;
+  }
+  interface CapPasswordAttributes extends StencilHTMLAttributes {
+    'label'?: string;
+    'showPassword'?: boolean;
+  }
+
+  interface CapPesel {
+    'label': string;
+  }
+  interface CapPeselAttributes extends StencilHTMLAttributes {
+    'label'?: string;
+  }
 
   interface UcSpinner {}
   interface UcSpinnerAttributes extends StencilHTMLAttributes {}
@@ -33,6 +49,8 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'CapAuth': Components.CapAuth;
+    'CapPassword': Components.CapPassword;
     'CapPesel': Components.CapPesel;
     'UcSpinner': Components.UcSpinner;
     'UcStockFinder': Components.UcStockFinder;
@@ -40,12 +58,26 @@ declare global {
   }
 
   interface StencilIntrinsicElements {
+    'cap-auth': Components.CapAuthAttributes;
+    'cap-password': Components.CapPasswordAttributes;
     'cap-pesel': Components.CapPeselAttributes;
     'uc-spinner': Components.UcSpinnerAttributes;
     'uc-stock-finder': Components.UcStockFinderAttributes;
     'uc-stock-price': Components.UcStockPriceAttributes;
   }
 
+
+  interface HTMLCapAuthElement extends Components.CapAuth, HTMLStencilElement {}
+  var HTMLCapAuthElement: {
+    prototype: HTMLCapAuthElement;
+    new (): HTMLCapAuthElement;
+  };
+
+  interface HTMLCapPasswordElement extends Components.CapPassword, HTMLStencilElement {}
+  var HTMLCapPasswordElement: {
+    prototype: HTMLCapPasswordElement;
+    new (): HTMLCapPasswordElement;
+  };
 
   interface HTMLCapPeselElement extends Components.CapPesel, HTMLStencilElement {}
   var HTMLCapPeselElement: {
@@ -72,6 +104,8 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'cap-auth': HTMLCapAuthElement
+    'cap-password': HTMLCapPasswordElement
     'cap-pesel': HTMLCapPeselElement
     'uc-spinner': HTMLUcSpinnerElement
     'uc-stock-finder': HTMLUcStockFinderElement
@@ -79,6 +113,8 @@ declare global {
   }
 
   interface ElementTagNameMap {
+    'cap-auth': HTMLCapAuthElement;
+    'cap-password': HTMLCapPasswordElement;
     'cap-pesel': HTMLCapPeselElement;
     'uc-spinner': HTMLUcSpinnerElement;
     'uc-stock-finder': HTMLUcStockFinderElement;
