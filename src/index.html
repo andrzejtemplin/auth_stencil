@@ -2,11 +2,13 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <script src="/build/mycomponent.js"></script>
+    <script type="module" src="/build/mycomponent.esm.js"></script>
+    <script nomodule src="/build/mycomponent.js"></script>
   </head>
   <body>
-    <cap-auth> </cap-auth>
-    <!-- <cap-pesel label="PESEL:"></cap-pesel>
-    <cap-password label="Hasło:" show-password></cap-password> -->
+    <push-button></push-button>
+    <!-- <cap-password> </cap-password> -->
+    <!-- <cap-pesel label="PESEL:"></cap-pesel> -->
+    <!-- <cap-password label="Hasło:" show-password></cap-password> -->
   </body>
 </html>

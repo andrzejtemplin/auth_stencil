@@ -1,4 +1,4 @@
-import { Component, Prop, Watch } from "@stencil/core";
+import { Component, h, Prop, Watch } from "@stencil/core";
 
 @Component({
   tag: "cap-password",
@@ -32,9 +32,9 @@ componentDidLoad() {
 
   render() {
     return [
-      <div>{this.label || "Password:"}</div>,
       <div id="password">
-        <input type="password" ref={el => (this.passwordInput = el)} />
+        <input id="password-input" type="password" placeholder={this.label || "Password "} ref={el => (this.passwordInput = el)} />
+        <push-button>sdfsf</push-button>
         <input
           id="checkbox"
           type="checkbox"

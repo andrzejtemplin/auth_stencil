@@ -1,4 +1,4 @@
-import { Component, Listen, State, Prop } from "@stencil/core";
+import { Component, h, Listen, State, Prop } from "@stencil/core";
 import { ValidationHelper } from "./ValidationHelper";
 
 @Component({
