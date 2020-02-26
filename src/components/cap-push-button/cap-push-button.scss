@@ -1,0 +1,14 @@
+:host svg {
+  fill: var(--push-button-primary-color);
+  stroke: var(--push-button-primary-color);
+  
+  &:hover {
+    fill: var(--push-button-tint);
+    stroke: var(--push-button-tint);
+  }
+}
+
+// :host(:hover) svg {
+//     fill:var(--push-button-tint);
+//     stroke:var(--push-button-tint);
+// }

@@ -1,8 +1,8 @@
 {
-  "name": "my-component",
+  "name": "auth-library",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
-  "module": "dist/esm/index.js",
+  "module": "dist/index.mjs",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
@@ -15,7 +15,10 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@stencil/sass": "^1.1.1",
+    "rxjs": "^6.5.4"
+  },
   "devDependencies": {
     "@stencil/core": "^1.8.9"
   },

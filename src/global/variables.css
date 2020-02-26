@@ -1,0 +1,8 @@
+:root {
+  --error-message-color: rgb(240, 81, 102);
+  --input-focused-color: #71a7f8;
+  --input-text-color: #807c73;
+  --input-border-color: lightgray;
+  --push-button-primary-color:#807c73;
+  --push-button-tint: lightgray;
+}

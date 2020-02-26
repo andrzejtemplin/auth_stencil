@@ -1,8 +1,8 @@
-import { Component, h, Prop, Watch } from "@stencil/core";
+import { Component, h, Prop, Watch, Listen } from "@stencil/core";
 
 @Component({
   tag: "cap-password",
-  styleUrl: "./cap-password.css",
+  styleUrl: "./cap-password.scss",
   shadow: true
 })
 export class CapPassword {
@@ -11,37 +11,36 @@ export class CapPassword {
 
   @Prop({ mutable: true, reflectToAttr: true })
   showPassword: boolean;
-
-  togglePassword: HTMLInputElement;
+  
   passwordInput: HTMLInputElement;
 
-componentDidLoad() {
-  this.togglePasswordVisibility();
-}
+  @Listen('pushButtonStateChange')
+  pushButtonStateChangeHandler(event:CustomEvent) {
+    this.showPassword = event.detail;
+  }
 
-  @Watch('showPassword')
+  @Watch("showPassword")
   togglePasswordVisibility() {
-    if (this.togglePassword.checked) {
+    if (this.showPassword) {
       this.passwordInput.setAttribute("type", "text");
-      this.showPassword = true;
     } else {
       this.passwordInput.setAttribute("type", "password");
-      this.showPassword = false;
     }
   }
 
   render() {
     return [
-      <div id="password">
-        <input id="password-input" type="password" placeholder={this.label || "Password "} ref={el => (this.passwordInput = el)} />
-        <push-button>sdfsf</push-button>
+      <div id="password-container" >
         <input
-          id="checkbox"
-          type="checkbox"
-          checked={this.showPassword}
-          ref={el => (this.togglePassword = el)}
-          onClick={this.togglePasswordVisibility.bind(this)}
+          id="password-input"
+          type="password"
+          placeholder={this.label || "Password "}
+          ref={el => (this.passwordInput = el)}
         />
+        <div id="password-input-border"></div>
+        <cap-push-button id="show-password-button"
+          on={this.showPassword}
+        ></cap-push-button>
       </div>
     ];
   }

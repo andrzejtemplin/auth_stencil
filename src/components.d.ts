@@ -11,6 +11,10 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface CapAuth {}
+  interface CapButton {}
+  interface CapIcon {
+    'name': string;
+  }
   interface CapPassword {
     'label': string;
     'showPassword': boolean;
@@ -18,12 +22,8 @@ export namespace Components {
   interface CapPesel {
     'label': string;
   }
-  interface PushButton {
+  interface CapPushButton {
     'on': boolean;
-  }
-  interface StencilAsset {
-    'color': string;
-    'image': string;
   }
   interface UcSpinner {}
   interface UcStockFinder {}
@@ -41,6 +41,18 @@ declare global {
     new (): HTMLCapAuthElement;
   };
 
+  interface HTMLCapButtonElement extends Components.CapButton, HTMLStencilElement {}
+  var HTMLCapButtonElement: {
+    prototype: HTMLCapButtonElement;
+    new (): HTMLCapButtonElement;
+  };
+
+  interface HTMLCapIconElement extends Components.CapIcon, HTMLStencilElement {}
+  var HTMLCapIconElement: {
+    prototype: HTMLCapIconElement;
+    new (): HTMLCapIconElement;
+  };
+
   interface HTMLCapPasswordElement extends Components.CapPassword, HTMLStencilElement {}
   var HTMLCapPasswordElement: {
     prototype: HTMLCapPasswordElement;
@@ -53,16 +65,10 @@ declare global {
     new (): HTMLCapPeselElement;
   };
 
-  interface HTMLPushButtonElement extends Components.PushButton, HTMLStencilElement {}
-  var HTMLPushButtonElement: {
-    prototype: HTMLPushButtonElement;
-    new (): HTMLPushButtonElement;
-  };
-
-  interface HTMLStencilAssetElement extends Components.StencilAsset, HTMLStencilElement {}
-  var HTMLStencilAssetElement: {
-    prototype: HTMLStencilAssetElement;
-    new (): HTMLStencilAssetElement;
+  interface HTMLCapPushButtonElement extends Components.CapPushButton, HTMLStencilElement {}
+  var HTMLCapPushButtonElement: {
+    prototype: HTMLCapPushButtonElement;
+    new (): HTMLCapPushButtonElement;
   };
 
   interface HTMLUcSpinnerElement extends Components.UcSpinner, HTMLStencilElement {}
@@ -84,10 +90,11 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'cap-auth': HTMLCapAuthElement;
+    'cap-button': HTMLCapButtonElement;
+    'cap-icon': HTMLCapIconElement;
     'cap-password': HTMLCapPasswordElement;
     'cap-pesel': HTMLCapPeselElement;
-    'push-button': HTMLPushButtonElement;
-    'stencil-asset': HTMLStencilAssetElement;
+    'cap-push-button': HTMLCapPushButtonElement;
     'uc-spinner': HTMLUcSpinnerElement;
     'uc-stock-finder': HTMLUcStockFinderElement;
     'uc-stock-price': HTMLUcStockPriceElement;
@@ -96,6 +103,10 @@ declare global {
 
 declare namespace LocalJSX {
   interface CapAuth {}
+  interface CapButton {}
+  interface CapIcon {
+    'name'?: string;
+  }
   interface CapPassword {
     'label'?: string;
     'showPassword'?: boolean;
@@ -103,13 +114,9 @@ declare namespace LocalJSX {
   interface CapPesel {
     'label'?: string;
   }
-  interface PushButton {
+  interface CapPushButton {
     'on'?: boolean;
-    'onStateHasBeenChanged'?: (event: CustomEvent<any>) => void;
-  }
-  interface StencilAsset {
-    'color'?: string;
-    'image'?: string;
+    'onPushButtonStateChange'?: (event: CustomEvent<any>) => void;
   }
   interface UcSpinner {}
   interface UcStockFinder {
@@ -121,10 +128,11 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'cap-auth': CapAuth;
+    'cap-button': CapButton;
+    'cap-icon': CapIcon;
     'cap-password': CapPassword;
     'cap-pesel': CapPesel;
-    'push-button': PushButton;
-    'stencil-asset': StencilAsset;
+    'cap-push-button': CapPushButton;
     'uc-spinner': UcSpinner;
     'uc-stock-finder': UcStockFinder;
     'uc-stock-price': UcStockPrice;
@@ -138,10 +146,11 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'cap-auth': LocalJSX.CapAuth & JSXBase.HTMLAttributes<HTMLCapAuthElement>;
+      'cap-button': LocalJSX.CapButton & JSXBase.HTMLAttributes<HTMLCapButtonElement>;
+      'cap-icon': LocalJSX.CapIcon & JSXBase.HTMLAttributes<HTMLCapIconElement>;
       'cap-password': LocalJSX.CapPassword & JSXBase.HTMLAttributes<HTMLCapPasswordElement>;
       'cap-pesel': LocalJSX.CapPesel & JSXBase.HTMLAttributes<HTMLCapPeselElement>;
-      'push-button': LocalJSX.PushButton & JSXBase.HTMLAttributes<HTMLPushButtonElement>;
-      'stencil-asset': LocalJSX.StencilAsset & JSXBase.HTMLAttributes<HTMLStencilAssetElement>;
+      'cap-push-button': LocalJSX.CapPushButton & JSXBase.HTMLAttributes<HTMLCapPushButtonElement>;
       'uc-spinner': LocalJSX.UcSpinner & JSXBase.HTMLAttributes<HTMLUcSpinnerElement>;
       'uc-stock-finder': LocalJSX.UcStockFinder & JSXBase.HTMLAttributes<HTMLUcStockFinderElement>;
       'uc-stock-price': LocalJSX.UcStockPrice & JSXBase.HTMLAttributes<HTMLUcStockPriceElement>;

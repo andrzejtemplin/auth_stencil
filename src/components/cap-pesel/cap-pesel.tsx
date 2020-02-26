@@ -3,7 +3,7 @@ import { ValidationHelper } from "./ValidationHelper";
 
 @Component({
   tag: "cap-pesel",
-  styleUrl: "./cap-pesel.css",
+  styleUrl: "./cap-pesel.scss",
   shadow: true
 })
 export class CapPesel {
@@ -28,16 +28,20 @@ export class CapPesel {
   }
 
   render() {
-    let validationInfo;
 
-    if (!this.isValid) {
-      validationInfo = <p>Pesel może być nieprawidłowy</p>;
-    }
+    let validationInfo = this.isValid ? "" : <p>Pesel może być nieprawidłowy</p>;
 
-    return [
-      <div>{this.label || "Wprowadź dane:"}</div>,
-      <input type="text" id="pesel" ref={el => (this.peselInput = el)} />,
+    return (
+    <div id="pesel-container">
+      <input
+        id="pesel-input"
+        type="text"
+        placeholder={this.label || "PESEL"}
+        ref={el => (this.peselInput = el)}
+      />
+      <div id="pesel-input-border"></div>
       <div id="error-message">{validationInfo}</div>
-    ];
+    </div>
+    )
   }
 }
