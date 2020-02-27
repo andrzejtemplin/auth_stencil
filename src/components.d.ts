@@ -11,24 +11,22 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface CapAuth {}
-  interface CapButton {}
+  interface CapButton {
+    'color': 'primary' | 'secondary';
+    'type': 'submit' | 'reset' | 'button';
+  }
   interface CapIcon {
     'name': string;
   }
   interface CapPassword {
-    'label': string;
+    'placeholder': string;
     'showPassword': boolean;
   }
   interface CapPesel {
-    'label': string;
+    'placeholder': string;
   }
   interface CapPushButton {
     'on': boolean;
-  }
-  interface UcSpinner {}
-  interface UcStockFinder {}
-  interface UcStockPrice {
-    'stockSymbol': string;
   }
 }
 
@@ -70,24 +68,6 @@ declare global {
     prototype: HTMLCapPushButtonElement;
     new (): HTMLCapPushButtonElement;
   };
-
-  interface HTMLUcSpinnerElement extends Components.UcSpinner, HTMLStencilElement {}
-  var HTMLUcSpinnerElement: {
-    prototype: HTMLUcSpinnerElement;
-    new (): HTMLUcSpinnerElement;
-  };
-
-  interface HTMLUcStockFinderElement extends Components.UcStockFinder, HTMLStencilElement {}
-  var HTMLUcStockFinderElement: {
-    prototype: HTMLUcStockFinderElement;
-    new (): HTMLUcStockFinderElement;
-  };
-
-  interface HTMLUcStockPriceElement extends Components.UcStockPrice, HTMLStencilElement {}
-  var HTMLUcStockPriceElement: {
-    prototype: HTMLUcStockPriceElement;
-    new (): HTMLUcStockPriceElement;
-  };
   interface HTMLElementTagNameMap {
     'cap-auth': HTMLCapAuthElement;
     'cap-button': HTMLCapButtonElement;
@@ -95,35 +75,28 @@ declare global {
     'cap-password': HTMLCapPasswordElement;
     'cap-pesel': HTMLCapPeselElement;
     'cap-push-button': HTMLCapPushButtonElement;
-    'uc-spinner': HTMLUcSpinnerElement;
-    'uc-stock-finder': HTMLUcStockFinderElement;
-    'uc-stock-price': HTMLUcStockPriceElement;
   }
 }
 
 declare namespace LocalJSX {
   interface CapAuth {}
-  interface CapButton {}
+  interface CapButton {
+    'color'?: 'primary' | 'secondary';
+    'type'?: 'submit' | 'reset' | 'button';
+  }
   interface CapIcon {
     'name'?: string;
   }
   interface CapPassword {
-    'label'?: string;
+    'placeholder'?: string;
     'showPassword'?: boolean;
   }
   interface CapPesel {
-    'label'?: string;
+    'placeholder'?: string;
   }
   interface CapPushButton {
     'on'?: boolean;
     'onPushButtonStateChange'?: (event: CustomEvent<any>) => void;
-  }
-  interface UcSpinner {}
-  interface UcStockFinder {
-    'onUcSymbolSelected'?: (event: CustomEvent<string>) => void;
-  }
-  interface UcStockPrice {
-    'stockSymbol'?: string;
   }
 
   interface IntrinsicElements {
@@ -133,9 +106,6 @@ declare namespace LocalJSX {
     'cap-password': CapPassword;
     'cap-pesel': CapPesel;
     'cap-push-button': CapPushButton;
-    'uc-spinner': UcSpinner;
-    'uc-stock-finder': UcStockFinder;
-    'uc-stock-price': UcStockPrice;
   }
 }
 
@@ -151,9 +121,6 @@ declare module "@stencil/core" {
       'cap-password': LocalJSX.CapPassword & JSXBase.HTMLAttributes<HTMLCapPasswordElement>;
       'cap-pesel': LocalJSX.CapPesel & JSXBase.HTMLAttributes<HTMLCapPeselElement>;
       'cap-push-button': LocalJSX.CapPushButton & JSXBase.HTMLAttributes<HTMLCapPushButtonElement>;
-      'uc-spinner': LocalJSX.UcSpinner & JSXBase.HTMLAttributes<HTMLUcSpinnerElement>;
-      'uc-stock-finder': LocalJSX.UcStockFinder & JSXBase.HTMLAttributes<HTMLUcStockFinderElement>;
-      'uc-stock-price': LocalJSX.UcStockPrice & JSXBase.HTMLAttributes<HTMLUcStockPriceElement>;
     }
   }
 }

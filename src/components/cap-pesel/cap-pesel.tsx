@@ -7,14 +7,14 @@ import { ValidationHelper } from "./ValidationHelper";
   shadow: true
 })
 export class CapPesel {
-  peselInput: HTMLInputElement;
+  @Prop({reflect:true})
+  placeholder: string;
 
   @State()
   isValid: boolean = true;
-
-  @Prop()
-  label: string;
-
+  
+  private peselInput: HTMLInputElement;
+ 
   @Listen("keyup")
   handleKeyDown() {
     if (this.peselInput.value.length === 11) {
@@ -36,11 +36,11 @@ export class CapPesel {
       <input
         id="pesel-input"
         type="text"
-        placeholder={this.label || "PESEL"}
+        placeholder={this.placeholder || "National ID"}
         ref={el => (this.peselInput = el)}
+        value=""
       />
-      <div id="pesel-input-border"></div>
-      <div id="error-message">{validationInfo}</div>
+      <div id="pesel-input-border"><div id="error-message">{validationInfo}</div></div>
     </div>
     )
   }

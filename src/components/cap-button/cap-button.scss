@@ -1,17 +1,31 @@
+:host([color='secondary']) button {
+  color: white;
+  background-color: var(--button-secondary-color);
+
+  &:hover {
+    background-color: var(--button-secondary-color-tint);
+  }
+}
+
+:host([color='primary']) button {
+  color: white;
+  background-color: var(--button-primary-color);
+
+  &:hover {
+    background-color: var(--button-primary-color-tint);
+  }
+}
+
 button {
+  margin: 30px 20px 0px 0px;
+  padding:10px;
   border: none;
   border-radius: 10px;
   min-height: 40px;
   min-width: 100px;
   outline: none;
   text-align: center;
-  color: white;
-  background-color: #4caf50;
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
-  
-  &:hover {
-    background-color: #5bc25e;
-    cursor: pointer;
-  }
+  cursor: pointer;
 }

@@ -6,13 +6,13 @@ import { Component, h, Prop, Watch, Listen } from "@stencil/core";
   shadow: true
 })
 export class CapPassword {
-  @Prop()
-  label: string;
+  @Prop({reflect:true})
+  placeholder: string;
 
   @Prop({ mutable: true, reflectToAttr: true })
   showPassword: boolean;
   
-  passwordInput: HTMLInputElement;
+  private passwordInput: HTMLInputElement;
 
   @Listen('pushButtonStateChange')
   pushButtonStateChangeHandler(event:CustomEvent) {
@@ -34,8 +34,9 @@ export class CapPassword {
         <input
           id="password-input"
           type="password"
-          placeholder={this.label || "Password "}
+          placeholder={this.placeholder || "Password "}
           ref={el => (this.passwordInput = el)}
+          value=""
         />
         <div id="password-input-border"></div>
         <cap-push-button id="show-password-button"

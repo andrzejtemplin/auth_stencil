@@ -3,12 +3,7 @@
   stroke: var(--push-button-primary-color);
   
   &:hover {
-    fill: var(--push-button-tint);
-    stroke: var(--push-button-tint);
+    fill: var(--push-button-primary-tint);
+    stroke: var(--push-button-primary-tint);
   }
 }
-
-// :host(:hover) svg {
-//     fill:var(--push-button-tint);
-//     stroke:var(--push-button-tint);
-// }

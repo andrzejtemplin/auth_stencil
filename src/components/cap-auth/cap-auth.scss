@@ -1,0 +1,24 @@
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 324px;
+  margin: auto;
+}
+
+a {
+    margin-top:20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var( --paragraph-primary-color);
+    text-decoration: none;
+    text-align: right;
+}
+
+#auth-container {
+    margin: auto;
+    border: 3px var(--input-border-color) dashed;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    height: 330px;
+
+}

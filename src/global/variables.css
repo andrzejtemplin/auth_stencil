@@ -4,5 +4,12 @@
   --input-text-color: #807c73;
   --input-border-color: lightgray;
   --push-button-primary-color:#807c73;
-  --push-button-tint: lightgray;
+  --push-button-primary-tint: lightgray;
+  --paragraph-primary-color: #71a7f8;
+  
+  /* Buttons */
+  --button-secondary-color: #4caf50;
+  --button-secondary-color-tint: #5bc25e;
+  --button-primary-color: #71a7f8;
+  --button-primary-color-tint: #93bcf8;
 }
