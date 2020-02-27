@@ -1,4 +1,4 @@
-import { Component, h, State } from "@stencil/core";
+import { Component, h } from "@stencil/core";
 
 @Component({
   tag: "cap-auth",
@@ -6,28 +6,26 @@ import { Component, h, State } from "@stencil/core";
   shadow: true
 })
 export class CapAuth {
- 
-  @State() formControls = {
-    pesel: null,
-    password: null
-  };
-
-  changeFormValue(controlName, value) {
-    this.formControls = {
-      ...this.formControls,
-      [controlName]: value
-    };
-  }
 
   formSubmitHandler(event: Event) {
     event.preventDefault();
-    console.log(this.formControls);
+    const pesel = (event.target as HTMLElement).querySelector('cap-pesel');
+    const password = (event.target as HTMLElement).querySelector('cap-password');
+
+    Promise.all([pesel.validate(), password.validate()]).then(results => {
+      if (results.reduce((x, y) => x && y)) {
+        console.log('wszystko gra');
+      }
+      else {
+        console.log('validation failed');
+      }
+    })
   }
 
   render() {
     return (
       <div id="auth-container">
-        <form onSubmit={e => this.formSubmitHandler(e)}>
+        <form name="authForm" onSubmit={e => this.formSubmitHandler(e)} method="post">
           <cap-pesel></cap-pesel>
           <cap-password></cap-password>
           <a href="">Przypomnij hasło</a>

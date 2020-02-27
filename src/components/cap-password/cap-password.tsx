@@ -1,4 +1,4 @@
-import { Component, h, Prop, Watch, Listen } from "@stencil/core";
+import { Component, h, Prop, State, Watch, Listen, Method } from "@stencil/core";
 
 @Component({
   tag: "cap-password",
@@ -6,16 +6,25 @@ import { Component, h, Prop, Watch, Listen } from "@stencil/core";
   shadow: true
 })
 export class CapPassword {
-  @Prop({reflect:true})
-  placeholder: string;
-
-  @Prop({ mutable: true, reflectToAttr: true })
-  showPassword: boolean;
-  
   private passwordInput: HTMLInputElement;
 
+  @Prop()
+  value: string;
+
+  @Prop({ mutable: true, reflect: true })
+  placeholder: string = "Password";
+
+  @Prop({ mutable: true, reflect: true })
+  showPassword: boolean;
+
+  @Prop()
+  pattern: string;
+
+  @State()
+  isValid: boolean = true;
+
   @Listen('pushButtonStateChange')
-  pushButtonStateChangeHandler(event:CustomEvent) {
+  pushButtonStateChangeHandler(event: CustomEvent) {
     this.showPassword = event.detail;
   }
 
@@ -28,15 +37,26 @@ export class CapPassword {
     }
   }
 
+  @Method()
+  validate() {
+    this.isValid = true;
+    return Promise.resolve(this.isValid);
+  }
+
+  private setValue() {
+    this.value = this.passwordInput.value;
+  }
+
   render() {
     return [
       <div id="password-container" >
         <input
           id="password-input"
           type="password"
-          placeholder={this.placeholder || "Password "}
+          placeholder={this.placeholder}
           ref={el => (this.passwordInput = el)}
           value=""
+          onChange={this.setValue}
         />
         <div id="password-input-border"></div>
         <cap-push-button id="show-password-button"
