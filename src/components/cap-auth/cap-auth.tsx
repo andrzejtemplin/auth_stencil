@@ -7,7 +7,7 @@ import { Component, h } from "@stencil/core";
 })
 export class CapAuth {
 
-  formSubmitHandler(event: Event) {
+  async formSubmitHandler(event: Event) {
     event.preventDefault();
     const pesel = (event.target as HTMLElement).querySelector('cap-pesel');
     const password = (event.target as HTMLElement).querySelector('cap-password');

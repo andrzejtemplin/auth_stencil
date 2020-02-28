@@ -28,6 +28,11 @@ export class CapPassword {
     this.showPassword = event.detail;
   }
 
+  @Listen('keyup')
+  setValue() {
+    this.value = this.passwordInput.value;
+  }
+
   @Watch("showPassword")
   togglePasswordVisibility() {
     if (this.showPassword) {
@@ -43,9 +48,6 @@ export class CapPassword {
     return Promise.resolve(this.isValid);
   }
 
-  private setValue() {
-    this.value = this.passwordInput.value;
-  }
 
   render() {
     return [
@@ -54,9 +56,8 @@ export class CapPassword {
           id="password-input"
           type="password"
           placeholder={this.placeholder}
-          ref={el => (this.passwordInput = el)}
+          ref={el => this.passwordInput = el}
           value=""
-          onChange={this.setValue}
         />
         <div id="password-input-border"></div>
         <cap-push-button id="show-password-button"
