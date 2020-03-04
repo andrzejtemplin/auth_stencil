@@ -1,4 +1,4 @@
-import { Component, h, Listen, State, Prop, Method } from "@stencil/core";
+import { Component, h, State, Prop, Method, EventEmitter, Event } from "@stencil/core";
 import { ValidationHelper } from "./ValidationHelper";
 
 @Component({
@@ -7,7 +7,6 @@ import { ValidationHelper } from "./ValidationHelper";
   shadow: true
 })
 export class CapPesel {
-
   private peselInput: HTMLInputElement;
 
   @Prop()
@@ -19,10 +18,9 @@ export class CapPesel {
   @State()
   isValid: boolean = true;
 
-  @Listen("keyup")
-  handleKeyDown() {
-    this.isValid = true;
-    this.value = this.peselInput.value;
+  @Event() inputValueChange: EventEmitter;
+  valueChangeHandler(ev: any) {
+    this.inputValueChange.emit(ev.target.value);
   }
 
   @Method()
@@ -32,8 +30,11 @@ export class CapPesel {
   }
 
   render() {
-
-    let validationInfo = this.isValid ? "" : <p>Pesel może być nieprawidłowy</p>;
+    let validationInfo = this.isValid ? (
+      ""
+    ) : (
+      <p>Pesel może być nieprawidłowy</p>
+    );
 
     return (
       <div id="pesel-container">
@@ -42,10 +43,13 @@ export class CapPesel {
           type="text"
           placeholder={this.placeholder}
           ref={el => (this.peselInput = el)}
-          value=""
+          onInput={ev => this.valueChangeHandler(ev)}
+          value={this.value}
         />
-        <div id="pesel-input-border"><div id="error-message">{validationInfo}</div></div>
+        <div id="pesel-input-border">
+          <div id="error-message">{validationInfo}</div>
+        </div>
       </div>
-    )
+    );
   }
 }

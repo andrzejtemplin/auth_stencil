@@ -12,10 +12,11 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
   interface CapAuth {}
   interface CapButton {
-    'color': 'primary' | 'secondary';
-    'type': 'submit' | 'reset' | 'button';
+    'color': "primary" | "secondary";
+    'type': "submit" | "reset" | "button";
   }
   interface CapPassword {
+    'isValid': boolean;
     'pattern': string;
     'placeholder': string;
     'showPassword': boolean;
@@ -76,16 +77,20 @@ declare global {
 declare namespace LocalJSX {
   interface CapAuth {}
   interface CapButton {
-    'color'?: 'primary' | 'secondary';
-    'type'?: 'submit' | 'reset' | 'button';
+    'color'?: "primary" | "secondary";
+    'onOnClick'?: (event: CustomEvent<any>) => void;
+    'type'?: "submit" | "reset" | "button";
   }
   interface CapPassword {
+    'isValid'?: boolean;
+    'onInputValueChange'?: (event: CustomEvent<any>) => void;
     'pattern'?: string;
     'placeholder'?: string;
     'showPassword'?: boolean;
     'value'?: string;
   }
   interface CapPesel {
+    'onInputValueChange'?: (event: CustomEvent<any>) => void;
     'placeholder'?: string;
     'value'?: string;
   }

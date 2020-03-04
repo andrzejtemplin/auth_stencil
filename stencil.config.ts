@@ -2,7 +2,8 @@ import { Config } from "@stencil/core";
 import { sass } from "@stencil/sass";
 
 export const config: Config = {
-  namespace: "mycomponent",
+  namespace: "capauth",
+  globalStyle: 'src/global/variables.css',
   outputTargets: [
     {
       type: "dist"
@@ -15,8 +16,5 @@ export const config: Config = {
   ],
   plugins: [
     sass()
-  ],
-  copy: [
-    { src: 'global' }
   ]
 };

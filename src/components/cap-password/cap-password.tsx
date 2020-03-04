@@ -1,4 +1,13 @@
-import { Component, h, Prop, State, Watch, Listen, Method } from "@stencil/core";
+import {
+  Component,
+  h,
+  Prop,
+  Watch,
+  Listen,
+  Method,
+  EventEmitter,
+  Event
+} from "@stencil/core";
 
 @Component({
   tag: "cap-password",
@@ -8,8 +17,11 @@ import { Component, h, Prop, State, Watch, Listen, Method } from "@stencil/core"
 export class CapPassword {
   private passwordInput: HTMLInputElement;
 
-  @Prop()
+  @Prop({mutable:true,reflectToAttr:true})
   value: string;
+
+  @Prop()
+  pattern: string;
 
   @Prop({ mutable: true, reflect: true })
   placeholder: string = "Password";
@@ -17,20 +29,19 @@ export class CapPassword {
   @Prop({ mutable: true, reflect: true })
   showPassword: boolean;
 
-  @Prop()
-  pattern: string;
+  @Prop({ mutable: true, reflect: true })
+  isValid: boolean = false;
 
-  @State()
-  isValid: boolean = true;
-
-  @Listen('pushButtonStateChange')
-  pushButtonStateChangeHandler(event: CustomEvent) {
-    this.showPassword = event.detail;
+  @Event() inputValueChange: EventEmitter;
+  valueChangeHandler(ev: any) {
+    this.value = ev.target.value;   
+    this.isValid = !this.passwordInput.validity.patternMismatch;
+    this.inputValueChange.emit(ev);
   }
 
-  @Listen('keyup')
-  setValue() {
-    this.value = this.passwordInput.value;
+  @Listen("pushButtonStateChange")
+  pushButtonStateChangeHandler(event: CustomEvent) {
+    this.showPassword = event.detail;
   }
 
   @Watch("showPassword")
@@ -44,23 +55,25 @@ export class CapPassword {
 
   @Method()
   validate() {
-    this.isValid = true;
+    this.isValid = !this.passwordInput.validity.patternMismatch;
     return Promise.resolve(this.isValid);
   }
 
-
   render() {
     return [
-      <div id="password-container" >
+      <div id="password-container">
         <input
           id="password-input"
           type="password"
           placeholder={this.placeholder}
-          ref={el => this.passwordInput = el}
+          ref={el => (this.passwordInput = el)}
+          onInput={ev => this.valueChangeHandler(ev)}
+          pattern={this.pattern}
           value=""
         />
         <div id="password-input-border"></div>
-        <cap-push-button id="show-password-button"
+        <cap-push-button
+          id="show-password-button"
           on={this.showPassword}
         ></cap-push-button>
       </div>

@@ -1,5 +1,5 @@
 {
-  "name": "auth-library",
+  "name": "capauth",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "module": "dist/index.mjs",
@@ -16,6 +16,8 @@
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "dependencies": {
+    "@stencil/angular-output-target": "0.0.2",
+    "@stencil/react-output-target": "0.0.3",
     "@stencil/sass": "^1.1.1",
     "rxjs": "^6.5.4"
   },
