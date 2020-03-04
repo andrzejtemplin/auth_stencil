@@ -1,5 +1,4 @@
-export class ValidationHelper {
-  public static validatePesel(value: string): boolean {
+ export function validatePesel(value: string): boolean {
     const pesel: any[] = [...value];
 
     let checksum =
@@ -19,4 +18,3 @@ export class ValidationHelper {
     }
     return false;
   }
-}

@@ -16,7 +16,7 @@ export class CapButton {
   @Prop() type: "submit" | "reset" | "button" = "button";
   @Prop({ reflect: true }) color: "primary" | "secondary" = "primary";
   @Element() el!: HTMLElement;
-  @Event() onClick: EventEmitter;
+  @Event() customClick: EventEmitter;
 
   clickEventHandler(ev: Event) {
     if (this.type === "submit") {
@@ -32,7 +32,7 @@ export class CapButton {
         fakeButton.remove();
       }
     }
-    this.onClick.emit(ev);
+    this.customClick.emit(ev);
   }
 
   render() {

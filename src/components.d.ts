@@ -11,6 +11,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface CapAuth {}
+  interface CapAuth {}
   interface CapButton {
     'color': "primary" | "secondary";
     'type': "submit" | "reset" | "button";
@@ -24,6 +25,7 @@ export namespace Components {
     'value': string;
   }
   interface CapPesel {
+    'isValid': boolean;
     'placeholder': string;
     'validate': () => Promise<boolean>;
     'value': string;
@@ -35,6 +37,12 @@ export namespace Components {
 
 declare global {
 
+
+  interface HTMLCapAuthElement extends Components.CapAuth, HTMLStencilElement {}
+  var HTMLCapAuthElement: {
+    prototype: HTMLCapAuthElement;
+    new (): HTMLCapAuthElement;
+  };
 
   interface HTMLCapAuthElement extends Components.CapAuth, HTMLStencilElement {}
   var HTMLCapAuthElement: {
@@ -67,6 +75,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'cap-auth': HTMLCapAuthElement;
+    'cap-auth': HTMLCapAuthElement;
     'cap-button': HTMLCapButtonElement;
     'cap-password': HTMLCapPasswordElement;
     'cap-pesel': HTMLCapPeselElement;
@@ -76,9 +85,10 @@ declare global {
 
 declare namespace LocalJSX {
   interface CapAuth {}
+  interface CapAuth {}
   interface CapButton {
     'color'?: "primary" | "secondary";
-    'onOnClick'?: (event: CustomEvent<any>) => void;
+    'onCustomClick'?: (event: CustomEvent<any>) => void;
     'type'?: "submit" | "reset" | "button";
   }
   interface CapPassword {
@@ -90,6 +100,7 @@ declare namespace LocalJSX {
     'value'?: string;
   }
   interface CapPesel {
+    'isValid'?: boolean;
     'onInputValueChange'?: (event: CustomEvent<any>) => void;
     'placeholder'?: string;
     'value'?: string;
@@ -100,6 +111,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'cap-auth': CapAuth;
     'cap-auth': CapAuth;
     'cap-button': CapButton;
     'cap-password': CapPassword;
@@ -114,6 +126,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
+      'cap-auth': LocalJSX.CapAuth & JSXBase.HTMLAttributes<HTMLCapAuthElement>;
       'cap-auth': LocalJSX.CapAuth & JSXBase.HTMLAttributes<HTMLCapAuthElement>;
       'cap-button': LocalJSX.CapButton & JSXBase.HTMLAttributes<HTMLCapButtonElement>;
       'cap-password': LocalJSX.CapPassword & JSXBase.HTMLAttributes<HTMLCapPasswordElement>;

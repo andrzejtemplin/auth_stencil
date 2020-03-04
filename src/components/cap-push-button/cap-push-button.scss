@@ -1,9 +1,9 @@
-:host svg {
+:host([on]) svg {
   fill: var(--push-button-primary-color);
   stroke: var(--push-button-primary-color);
-  
-  &:hover {
-    fill: var(--push-button-primary-tint);
-    stroke: var(--push-button-primary-tint);
-  }
+}
+
+:host svg {
+  fill: var(--push-button-primary-tint);
+  stroke: var(--push-button-primary-tint);
 }
