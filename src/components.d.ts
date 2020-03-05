@@ -15,6 +15,12 @@ export namespace Components {
     'color': "primary" | "secondary";
     'type': "submit" | "reset" | "button";
   }
+  interface CapEmail {
+    'isValid': boolean;
+    'placeholder': string;
+    'validate': () => Promise<boolean>;
+    'value': string;
+  }
   interface CapPassword {
     'isValid': boolean;
     'pattern': string;
@@ -49,6 +55,12 @@ declare global {
     new (): HTMLCapButtonElement;
   };
 
+  interface HTMLCapEmailElement extends Components.CapEmail, HTMLStencilElement {}
+  var HTMLCapEmailElement: {
+    prototype: HTMLCapEmailElement;
+    new (): HTMLCapEmailElement;
+  };
+
   interface HTMLCapPasswordElement extends Components.CapPassword, HTMLStencilElement {}
   var HTMLCapPasswordElement: {
     prototype: HTMLCapPasswordElement;
@@ -69,6 +81,7 @@ declare global {
   interface HTMLElementTagNameMap {
     'cap-auth': HTMLCapAuthElement;
     'cap-button': HTMLCapButtonElement;
+    'cap-email': HTMLCapEmailElement;
     'cap-password': HTMLCapPasswordElement;
     'cap-pesel': HTMLCapPeselElement;
     'cap-push-button': HTMLCapPushButtonElement;
@@ -81,6 +94,12 @@ declare namespace LocalJSX {
     'color'?: "primary" | "secondary";
     'onCustomClick'?: (event: CustomEvent<any>) => void;
     'type'?: "submit" | "reset" | "button";
+  }
+  interface CapEmail {
+    'isValid'?: boolean;
+    'onInputValueChange'?: (event: CustomEvent<any>) => void;
+    'placeholder'?: string;
+    'value'?: string;
   }
   interface CapPassword {
     'isValid'?: boolean;
@@ -104,6 +123,7 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'cap-auth': CapAuth;
     'cap-button': CapButton;
+    'cap-email': CapEmail;
     'cap-password': CapPassword;
     'cap-pesel': CapPesel;
     'cap-push-button': CapPushButton;
@@ -118,6 +138,7 @@ declare module "@stencil/core" {
     interface IntrinsicElements {
       'cap-auth': LocalJSX.CapAuth & JSXBase.HTMLAttributes<HTMLCapAuthElement>;
       'cap-button': LocalJSX.CapButton & JSXBase.HTMLAttributes<HTMLCapButtonElement>;
+      'cap-email': LocalJSX.CapEmail & JSXBase.HTMLAttributes<HTMLCapEmailElement>;
       'cap-password': LocalJSX.CapPassword & JSXBase.HTMLAttributes<HTMLCapPasswordElement>;
       'cap-pesel': LocalJSX.CapPesel & JSXBase.HTMLAttributes<HTMLCapPeselElement>;
       'cap-push-button': LocalJSX.CapPushButton & JSXBase.HTMLAttributes<HTMLCapPushButtonElement>;
