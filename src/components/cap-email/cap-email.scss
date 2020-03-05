@@ -1,4 +1,4 @@
-#pesel-container {
+#email-container {
   margin-top: 30px;
   position: relative;
   display: inline-flex;
@@ -8,6 +8,7 @@
 
 #error-message {
   position: relative;
+  // left: -570px;
   top: 45px;
   color: var(--error-message-color);
   font-family: Arial, Helvetica, sans-serif;
@@ -15,7 +16,7 @@
   font-weight: bold;
 }
 
-#pesel-input-border {
+#email-input-border {
   position: relative;
   z-index: 0;
   left: -250px;
@@ -29,12 +30,12 @@
   transition: all 0.3s ease-in-out;
 }
 
-#pesel-input:focus + #pesel-input-border {
+#email-input:focus + #email-input-border {
   box-shadow: 0 0 5px var(--input-focused-color);
   border: 2px solid var(--input-focused-color);
 }
 
-#pesel-input {
+#email-input {
   position: relative;
   z-index: 1;
   left: 10px;
