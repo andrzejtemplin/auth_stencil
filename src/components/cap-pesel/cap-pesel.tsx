@@ -1,5 +1,5 @@
 import { Component, h, Prop, Method, EventEmitter, Event } from "@stencil/core";
-import { validatePesel } from "./validationHelper";
+import { validatePesel } from "./ValidationHelper";
 
 @Component({
   tag: "cap-pesel",
