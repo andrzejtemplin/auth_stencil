@@ -53,12 +53,12 @@ export class CapAuth {
             }
             pattern="^.{4,8}$"
           ></cap-password>
-          <a href="">Przypomnij hasło</a>
+          <a href="">Password reset</a>
           <div>
             <cap-button type="submit" color="primary">
-              Zaloguj się
+              Sign in
             </cap-button>
-            <cap-button color="secondary">Załóż konto</cap-button>
+            <cap-button color="secondary">Sign up</cap-button>
           </div>
         </form>
       </div>
